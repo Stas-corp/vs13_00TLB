@@ -19,27 +19,3 @@ def three_seconds_func():
 
 
 # three_seconds_func()
-
-print(2%3)
-
-def all_sub_lists(lst):
-    sub_lists = [[]]  # Починаємо з порожнього підсписку
-
-    for i in range(len(lst)):
-        sub_lists.append([lst[i]])
-
-    for i in range(len(lst)-1):
-        sub_lists.append(lst[i:i+2])
-
-    for i in range(len(lst)-2):
-        sub_lists.append(lst[i:i+3])  
-
-    for i in range(len(lst)-3):
-        sub_lists.append(lst[i:i+4])  
-
-    return sub_lists
-
-# Приклад використання
-my_list = [4, 6, 1, 3]
-result = all_sub_lists(my_list)
-print(result)
