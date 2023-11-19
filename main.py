@@ -1,8 +1,10 @@
 import botinit
+import photograph
 
 import telebot as tlb
 
 bot = botinit.bot
+pho = photograph.Photgraph()
 
 @bot.message_handler(commands=['start'])
 def reaction_comand_start(mess:tlb.types.Message):
@@ -16,14 +18,15 @@ def reaction_comand_hellow(mess:tlb.types.Message):
 
 @bot.message_handler(content_types=['photo'])
 def reaction_photo(mess:tlb.types.Message):
-    bot.send_message(mess.from_user.id, mess)
+    photos = mess.photo
+    pho.main(photos=photos)
+    # bot.send_message(mess.from_user.id, mess)
 
 @bot.message_handler(content_types=['text'])
 def reaction_text(mess:tlb.types.Message):
     if mess.text == '💩':
         markup = tlb.types.InlineKeyboardMarkup()
         btn = tlb.types.InlineKeyboardButton('или хочешь поспорить?', callback_data='qwe')
-        btn.callback_data
         markup.add(btn)
         message = 'Сам такой!!!'
         bot.send_message(mess.from_user.id, message, reply_markup=markup)
