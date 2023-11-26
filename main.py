@@ -16,10 +16,15 @@ def reaction_comand_hellow(mess:tlb.types.Message):
     message = f'Hellow, dear {mess.from_user.username}'
     bot.send_message(mess.from_user.id, message)
 
+@bot.message_handler(commands=['getpho'])
+def reaction_comand_hellow(mess:tlb.types.Message):
+    photos = pho.get_photos_list(str(mess.from_user.id))
+    bot.send_message(mess.from_user.id, photos)
+
 @bot.message_handler(content_types=['photo'])
 def reaction_photo(mess:tlb.types.Message):
     photos = mess.photo
-    pho.main(photos=photos)
+    pho.main(photos=photos, user_id=str(mess.from_user.id))
     # bot.send_message(mess.from_user.id, mess)
 
 @bot.message_handler(content_types=['text'])
